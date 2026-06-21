@@ -1,95 +1,39 @@
-# 💼 Job Assistant Agent
+# 💼 Job Application Agent
 
-A fully local AI-powered job application assistant built with:
-- **Ollama** — local LLM inference (llama3.2, mistral, etc.)
-- **ChromaDB** — vector database for RAG (resume & research context)
-- **SQLite** — persistent storage for applications, materials, chat history
-- **Streamlit** — web UI
+An AI-powered job application assistant built with a full local stack — no external APIs needed.
 
----
+## 🤖 What it does
+- Writes tailored cover letters, resume bullets, cold emails and LinkedIn messages
+- Researches companies, salaries and interview questions with live web search
+- Tracks all job applications with status updates and pipeline view
+- Stores your resume and vectorizes it for personalized AI responses (RAG)
+- AI chat agent that knows your background and gives personalized advice
 
-## 🚀 Quick Start
+## 🛠️ Tech Stack
+- **UI** — Streamlit
+- **LLM** — Ollama + llama3.2 (local)
+- **Vector DB** — ChromaDB (resume + research storage)
+- **Embeddings** — nomic-embed-text via Ollama
+- **Relational DB** — SQLite (applications, chat history, materials)
+- **Architecture** — RAG (Retrieval Augmented Generation)
+- **Streaming** — Ollama streaming API
 
-### 1. Install Python dependencies
-```bash
-pip install -r requirements.txt
-```
+## 🚀 How to run
+1. Install Ollama from https://ollama.com
+2. Pull models:
+   - `ollama pull llama3.2`
+   - `ollama pull nomic-embed-text`
+3. Install dependencies: `pip install -r requirements.txt`
+4. Run: `streamlit run app.py`
+5. Open http://localhost:8501
 
-### 2. Install Ollama
-Download from **https://ollama.com** and install for your OS.
+## 📱 Pages
+- 🤖 AI Chat Agent — Conversational agent with RAG context
+- 📝 Craft Materials — Cover letters, emails, resume bullets
+- 🔍 Research — Company research, salary benchmarks, interview prep
+- 📊 Application Tracker — Full pipeline with kanban view
+- 📄 Resume Vault — Store and vectorize your resume
+- ⚙️ Settings — Model config and storage stats
 
-### 3. Start Ollama & pull models
-```bash
-# In terminal 1 — start Ollama server
-ollama serve
-
-# In terminal 2 — pull models
-ollama pull llama3.2            # main chat model (4.7GB)
-ollama pull nomic-embed-text    # embeddings for RAG (274MB)
-
-# Optional: lighter/heavier alternatives
-ollama pull gemma2:2b           # faster, smaller
-ollama pull llama3.1:8b         # smarter, larger
-ollama pull mistral             # great for writing
-```
-
-### 4. Run the app
-```bash
-streamlit run app.py
-```
-
-Open **http://localhost:8501** in your browser.
-
----
-
-## 📱 Features
-
-| Page | What it does |
-|------|-------------|
-| 🤖 AI Chat Agent | Conversational agent with RAG — ask anything about your job search |
-| 📝 Craft Materials | Generate cover letters, resume bullets, cold emails, LinkedIn messages |
-| 🔍 Research | Company overviews, salary benchmarks, interview prep, industry trends |
-| 📊 Tracker | Full application pipeline — add jobs, track status, kanban view |
-| 📄 Resume Vault | Store your resume in sections, auto-vectorized for AI context |
-| ⚙️ Settings | Model selection, storage stats, setup guide |
-
----
-
-## 🧠 How RAG Works
-
-1. You add your resume to the **Resume Vault** → stored in SQLite + indexed in ChromaDB
-2. You research a company → results saved to ChromaDB
-3. When you chat or craft materials → agent queries ChromaDB for relevant context
-4. Context is injected into the prompt → AI gives personalized, grounded responses
-
----
-
-## 📁 Project Structure
-
-```
-job-agent/
-├── app.py              # Main Streamlit entry point
-├── requirements.txt
-├── data/
-│   ├── jobs.db         # SQLite database
-│   └── chroma/         # ChromaDB vector store
-├── pages/
-│   ├── chat.py         # AI agent chat
-│   ├── craft.py        # Material generator
-│   ├── research.py     # Company research
-│   ├── tracker.py      # Application tracker
-│   ├── vault.py        # Resume vault
-│   └── settings.py     # Settings & setup
-└── utils/
-    ├── db.py           # SQLite helpers
-    └── llm.py          # Ollama + ChromaDB helpers
-```
-
----
-
-## 💡 Tips
-
-- Start by adding your resume in **Resume Vault** — it makes all AI outputs much more personalized
-- Use **Research** before interviews — results are saved to your knowledge base
-- The **AI Chat Agent** is the most powerful feature — describe your situation and ask for help
-- All data is 100% local — nothing leaves your machine
+## 👤 Author
+Built by [achux11](https://github.com/achux11)
