@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.pyo
+data/jobs.db
+data/chroma/
+*.db
+.env
+*.bin
